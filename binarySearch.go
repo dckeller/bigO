@@ -8,8 +8,10 @@ func binarySearch(find int, values []int) int {
 	high := len(values) - 1
 
 
+	// while low is less than or equal to high //
 	for low <= high {
 		
+	// the / 2 will always round down to find a starting point //	
 		mid := (low + high) / 2
 
 		if values[mid] < find {

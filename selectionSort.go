@@ -13,6 +13,8 @@ func selectionSort(value []int) []int {
 				smallest = j
 			}
 		}
+
+		// Swap using tuple assignment //
 		value[i], value[smallest] = value[smallest], value[i]
 	}
 	return value
