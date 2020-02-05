@@ -1,0 +1,20 @@
+<html>
+<head>
+    <title>Form Prac</title>
+</head>
+<body>
+    <form action="/login" method="POST">
+        Username:<input type="text" name="username"><br/>
+        Email:<input type="text" name="email"><br/>
+        Year:<select type="text" name="year">
+        <option value="freshmen">freshmen</option>
+        <option value="sophmore">sophmore</option>
+        <option value="junior">junior</option>
+        <option value="senior">senior</option>
+    </select><br/>
+    Password:<input type="password" name="password">
+    <input value="{{.}}" type="hidden" name="token">
+    <input type="submit" value="Login">
+</form>
+</body>
+</html>
