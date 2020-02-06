@@ -1,4 +1,4 @@
-    package main
+package main
 
     import (
         "database/sql"
@@ -8,14 +8,14 @@
     )
 
     const (
-        DB_USER     = "postgres"
+        DB_USER     = "dckeller"
         DB_PASSWORD = "postgres"
-        DB_NAME     = "test"
+        // DB_NAME     = "test"
     )
 
     func main() {
-        dbinfo := fmt.Sprintf("user=%s password=%s dbname=%s sslmode=disable",
-            DB_USER, DB_PASSWORD, DB_NAME)
+        dbinfo := fmt.Sprintf("user=%s password=%s sslmode=disable",
+            DB_USER, DB_PASSWORD)
         db, err := sql.Open("postgres", dbinfo)
         checkErr(err)
         defer db.Close()
@@ -23,7 +23,7 @@
         fmt.Println("# Inserting values")
 
         var lastInsertId int
-        err = db.QueryRow("INSERT INTO userinfo(username,departname,created) VALUES($1,$2,$3) returning uid;", "dckeller", "coding", "2012-12-09").Scan(&lastInsertId)
+        err = db.QueryRow("INSERT INTO userinfo(username,departname,created) VALUES($1,$2,$3) returning uid;", "astaxie", "研发部门", "2012-12-09").Scan(&lastInsertId)
         checkErr(err)
         fmt.Println("last inserted id =", lastInsertId)
 
@@ -31,7 +31,7 @@
         stmt, err := db.Prepare("update userinfo set username=$1 where uid=$2")
         checkErr(err)
 
-        res, err := stmt.Exec("dckellerupdate", lastInsertId)
+        res, err := stmt.Exec("astaxieupdate", lastInsertId)
         checkErr(err)
 
         affect, err := res.RowsAffected()
@@ -40,7 +40,7 @@
         fmt.Println(affect, "rows changed")
 
         fmt.Println("# Querying")
-        rows, err := db.Query("SELECT * FROM user")
+        rows, err := db.Query("SELECT * FROM userinfo")
         checkErr(err)
 
         for rows.Next() {
