@@ -21,6 +21,7 @@ func binarySearch(find int, values []int) int {
 		} 
 	}
 
+	// check if the number exists in the slice //
 	if low == len(values) || values[low] != find {
 		return -1
 	} else {

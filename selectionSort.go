@@ -8,13 +8,14 @@ func selectionSort(value []int) []int {
 	for i := 0; i < len(value); i++ {
 		smallest := i
 		
+		// find the first, second, third, fourth...smallest value
 		for j := i; j < len(value); j++ {
 			if value[j] < value[smallest] {
 				smallest = j
 			}
 		}
 
-		// Swap using tuple assignment //
+		// Swap using tuple assignment swap smallest with postion of i//
 		value[i], value[smallest] = value[smallest], value[i]
 	}
 	return value
